@@ -6,15 +6,18 @@ import todoroute from "./routes/todoRoutes.js";
 const app=express();
 // pass:umlUwPYP5tv3qvTj
 // admin
-try{
-    let connected = mongoose.connect('mongodb+srv://admin:umlUwPYP5tv3qvTj@cluster0.w1saqqf.mongodb.net/?retryWrites=true&w=majority');
- console.log(connected,"Database connected successfully")
+const DatabseConnected=async()=>{
+    try {
+        let connected =await mongoose.connect('mongodb+srv://admin:umlUwPYP5tv3qvTj@cluster0.w1saqqf.mongodb.net/?retryWrites=true&w=majority');
+        console.log("Database connected successfully")
+    }
+    catch (error) {
+        console.log("err", error)
+    }
 }
-catch(error){
-    console.log("err",error)
-}
-
+DatabseConnected()
 app.use(cors())
+app.use(express.json())
 
 // root endpoint
 app.get("/",(req,res)=>{
