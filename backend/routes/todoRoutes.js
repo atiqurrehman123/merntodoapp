@@ -22,12 +22,21 @@ route.post("/userTodo", async(req, res) => {
 })
 
 // User Update Todo
-route.put("/userTodo", (req, res) => {
-    res.send("Item has been Change")
+route.put("/userTodo/:id",async (req, res) => {
+    const id = req.params.id;
+    const {title,completed}=req.body
+
+    const resdata = await TodoModal.findByIdAndUpdate(id,{title:title,completed:completed});
+    res.send("ITem has been updated")
+
+    // res.end(resdata)
+   
 })
 
 // User Delete Todo
-route.delete("/userTodo", (req, res) => {
+route.delete("/userTodo/:id", async(req, res) => {
+    const itemId=req.params.id;
+    const deleteTodoItem=await TodoModal.deleteOne({_id:itemId})
     res.send("Item delted from Todo record")
 })
 export default route;
