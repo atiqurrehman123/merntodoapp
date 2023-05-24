@@ -21,8 +21,7 @@ app.get("/",(req,res)=>{
 //User Get Todo 
 
 app.use("/",todoroute)
-
-const PORT=5001; //const 
+const PORT=5000; //const 
 app.listen(PORT,()=>{
     console.log(`Server is runing on port ${PORT}`)
 })
