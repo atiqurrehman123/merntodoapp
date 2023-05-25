@@ -4,10 +4,19 @@ import TodoModal from "../models/todoModel.js";
 // Router creation
 const route=express.Router();
 
+// Get todo list
 route.get("/userTodo", async(req, res) => {
     // res.send("User Todo list")
     const getTodolist=await TodoModal.find();
     res.send(getTodolist)
+})
+//Get single Todo Item
+route.get("/singleTodo/:id", async (req, res) => {
+    console.log(req.params.id)
+    const ItemId=req.params.id;
+    // res.send("User Todo list")
+    const getSingleTodo = await TodoModal.findById(ItemId);
+    res.send(getSingleTodo)
 })
 // User Post Todo
 route.post("/userTodo", async(req, res) => {
